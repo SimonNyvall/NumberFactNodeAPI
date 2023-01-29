@@ -9,6 +9,7 @@ const { read } = require("fs");
 const { json } = require("express");
 const app = express()
 
+require('dotenv').config()
 const connectionString = process.env.MONGODB_KEY
 
 async function connectDb() {
