@@ -1,7 +1,7 @@
 const http = require("http")
 const mongoose = require("mongoose")
 mongoose.set('strictQuery', false);
-//const numberFactSchema = require('../ExpressApi/models/numberFact-model')
+
 const numberFactSchema = require(__dirname + '/models/numberFact-model')
 
 const express = require("express");
@@ -20,7 +20,6 @@ async function connectDb() {
         console.log(error.message)
     }
 }
-
 connectDb()
 
 const db = mongoose.connection
