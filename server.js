@@ -32,6 +32,8 @@ app.use(express.static(__dirname + '/public'))
 
 const PORT = process.env.PORT || 3000
 
+app.get("/Keys", (req, res) => res.send(process.env))
+
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/public/index.html")
 })
