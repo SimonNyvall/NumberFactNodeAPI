@@ -10,7 +10,7 @@ const { json } = require("express");
 const app = express()
 
 require('dotenv').config()
-const connectionString = process.env.MONGODB_KEY
+const connectionString = process.env.CUSTOMCONNSTR_MONGODB_KEY
 
 async function connectDb() {
     try {
