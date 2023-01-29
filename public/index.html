@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/favicon.ico">
+
+    <script defer src="https://kit.fontawesome.com/35ff445366.js" crossorigin="anonymous"></script>
+
+    <script defer src="app.js"></script>
+    <script defer src="copyButtons.js"></script>
+
+    <title>NumberFactAPI</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <section class="center-text">
+            <h1 class="welcome-text">Welcome to the NumberFact API</h1>
+            <img src="https://static01.nyt.com/images/2015/05/03/sunday-review/03SETH/03SETH-master1050.gif">
+            <div class="justify-text">
+                <p>NumberFact is a free API for retrieving information about numbers in the form of json documents. The
+                    API also allows sending post, put and delete requests for adding, editing and deleting data in the
+                    database.</p>
+                <br>
+                <button type="button" class="collapsible">
+                    <h3>Why are numbers cool?</h3>
+                    <div id="arrow" class="collaps-indecator">▲</div>
+                </button>
+                <div class="numberFact-content">
+                    <p>Numbers are cool for many reasons. First, they are the building blocks of all mathematical
+                        concepts,
+                        from
+                        basic addition and subtraction to advanced calculus and statistics. This means that numbers are
+                        the
+                        foundation of many scientific and technological advancements in fields such as physics,
+                        engineering,
+                        and
+                        computer science.</p>
+                </div>
+            </div>
+        </section>
+        <br>
+        <hr>
+        <h1>Usage</h1>
+        <h3>Retrieves all the data currently stored</h3>
+        <pre>
+            <code>
+                <p><span class="get">GET</span> <a href="https://numberfact.azurewebsites.net/ShowAllFacts">https://numberfact.azurewebsites.net/ShowAllFacts</a></p>
+            </code>
+            <button class="copy-btn" id="GetAll-btn"><img class="copy-image" src="https://cdn-icons-png.flaticon.com/512/5993/5993921.png"></button>
+        </pre>
+        <p>Example response</p>
+        <pre>
+            [
+            <br>
+            {
+            <br>            
+            "id": 0,
+            <br>
+            "number": "5357",
+            <br>
+            "factMessage": "5357 is the smallest number that can not be formed using the digit 1 at most 27 times, together with the symbols +, –, × and ÷."
+            <br>
+            }
+            <br>
+            ]
+        </pre>
+        <p class="justify-text">Returns an array with id, number and the fact message</p>
+
+        <h3>Retrieves a object by the id</h3>
+        <pre>
+            <code>
+                <p><span class="get">GET</span> <a href="https://numberfact.azurewebsites.net/GetFactById/0">https://numberfact.azurewebsites.net/GetFactById/0</a></p>
+            </code>
+            <button class="copy-btn" id="GetById-btn"><img class="copy-image" src="https://cdn-icons-png.flaticon.com/512/5993/5993921.png"></button>
+        </pre>
+
+        <h3>Send post request to the API</h3>
+        <pre>
+            <code>
+                <p><span class="post">POST</span> <a href="https://numberfact.azurewebsites.net/AddFact">https://numberfact.azurewebsites.net/AddFact</a></p>
+            </code>
+            <button class="copy-btn" id="AddFact-btn"><img class="copy-image" src="https://cdn-icons-png.flaticon.com/512/5993/5993921.png"></button>
+        </pre>
+        <p class="justify-text">When sending a post request, be sure to specify the right id so data array stays organized.
+            The API will notify if an id change was made.</p>
+
+        <h3>Send a post request to the server to fetch a new instance</h3>
+        <pre>
+            <code>
+                <p><span class="post">POST</span> <a href="https://numberfact.azurewebsites.net/AddRandomFact">https://numberfact.azurewebsites.net/AddRandomFact</a></p>
+            </code>
+            <button class="copy-btn" id="AddRandom-btn"><img class="copy-image" src="https://cdn-icons-png.flaticon.com/512/5993/5993921.png"></button>
+        </pre>
+
+        <h3>Update one object</h3>
+        <pre>
+            <code>
+                <p><span class="put">PUT</span> <a href="https://numberfact.azurewebsites.net/UpdateFact/0">https://numberfact.azurewebsites.net/UpdateFact/0</a></p>
+            </code>
+            <button class="copy-btn" id="Update-btn"><img class="copy-image" src="https://cdn-icons-png.flaticon.com/512/5993/5993921.png"></button>
+        </pre>
+
+        <p class="justify-text">The user can send an id to specify which object should be updated. The API will
+            automatically change the id of the post request to match the input id.</p>
+
+        <h3>Delete fact from the database</h3>
+        <pre>
+            <code>
+                <p><span class="delete">DELETE</span> <a href="https://numberfact.azurewebsites.net/DeleteFactById/0">https://numberfact.azurewebsites.net/DeleteFactById/0</a></p>
+            </code>
+            <button class="copy-btn" id="Delete-btn"><img class="copy-image" src="https://cdn-icons-png.flaticon.com/512/5993/5993921.png"></button>
+        </pre>
+    </div>
+</body>
+<footer>
+    <hr>
+
+    <p>This project is open source feel free to contribute at <a
+            href="https://github.com/SimonNyvall/NumberFactNodeAPI">GitHub</a>. Love to hear the response I get from
+        this project from you.</p>
+
+</footer>
+
+</html>

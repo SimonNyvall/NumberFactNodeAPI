@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    color:rgb(0, 0, 0);
+}
+
+footer {
+    padding: 0 20px;
+}
+
+.justify-text {
+    text-align: justify;
+}
+
+.collapsible {
+    position: relative;
+    background-color: rgb(243, 243, 243);
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    padding: 5px;
+    padding-left: 20px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    border-radius: 10px;
+  }
+
+.collaps-indecator {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+  .active, .collapsible:hover {
+    background-color: rgb(215, 215, 215);
+  }
+
+  .numberFact-content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+
+.wrapper {
+    margin: 0 auto;
+    max-width: 600px;
+
+    padding: 0 20px;
+}
+
+hr {
+    color: #5faade;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.welcome-text {
+    font-size: 3rem;
+}
+
+img {
+    width: 50%;
+}
+
+pre {
+    position: relative;
+
+    border: 1px solid gray;
+    display: block;
+    font-size: 13px;
+    margin-bottom: 2em;
+    padding: 1em;
+    white-space: normal;
+
+}
+
+code {
+    padding: 0;
+}
+
+.copy-btn {
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+
+    right: 20px;
+
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.copy-image {
+
+    width: 20px;
+}
+
+.get {
+    color: green;
+}
+
+.post {
+    color: rgb(121, 121, 1);
+}
+
+.put {
+    color: blue;
+}
+
+.delete {
+    color: red;
+}
