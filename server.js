@@ -61,8 +61,10 @@ app.post("/AddFact", async (req, res) => {
     }
 
     const numberFactPost = new numberFactSchema({
+        _id: req.body._id,
         number: req.body.number,
-        factMessage: req.body.factMessage
+        factMessage: req.body.factMessage,
+        __v: req.body.__v
     })
 
     try {
@@ -70,7 +72,7 @@ app.post("/AddFact", async (req, res) => {
         res.status(201).json(newNumberFact)
     }
     catch (err) {
-        res.status(400).json({ message: err.message})
+        res.status(400).json({ message: err.message })
     }
 })
 
