@@ -52,14 +52,6 @@ app.get("/GetFactById/:id", getNumberFact, async (req, res) => {
 app.post("/AddFact", async (req, res) => {    
     const body = req.body
 
-    if (!isJsonKeysCorrect(body)) {
-        return res.send("The object is not of the right structure")
-    }
-
-    if (isIdOccupied(body)) {
-        return res.send("That id is not available try: " + numberFacts.length)
-    }
-
     const numberFactPost = new numberFactSchema({
         _id: req.body._id,
         number: req.body.number,
@@ -77,8 +69,6 @@ app.post("/AddFact", async (req, res) => {
 })
 
 function isJsonKeysCorrect(json) {
-    if (!("id" in json)) return false
-
     if (!("number" in json)) return false
 
     if (!("factMessage" in json)) return false
