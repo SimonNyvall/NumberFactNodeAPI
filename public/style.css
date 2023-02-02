@@ -115,3 +115,11 @@ code {
 .delete {
     color: red;
 }
+
+.light-blue-text {
+    color:#5faade;
+}
+
+.pink-text {
+    color: #f48478;
+}

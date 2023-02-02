@@ -1,12 +1,12 @@
-const http = require("http")
-const mongoose = require("mongoose")
+const http = require('http')
+const mongoose = require('mongoose')
 mongoose.set('strictQuery', false);
 
 const numberFactSchema = require(__dirname + '/models/numberFact-model')
 
-const express = require("express");
-const { read } = require("fs");
-const { json } = require("express");
+const express = require('express');
+const { read } = require('fs');
+const { json } = require('express');
 const app = express()
 
 require('dotenv').config()
@@ -23,7 +23,7 @@ async function connectDb() {
 connectDb()
 
 const db = mongoose.connection
-db.once('open', () => console.log('Connected to database'))
+db.once('open', () => console.log('Connected to mongoDb database _numberFactCluster_'))
 
 app.use(express.json())
 
@@ -31,25 +31,25 @@ app.use(express.static(__dirname + '/public'))
 
 const PORT = process.env.PORT || 3000
 
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/public/index.html")
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html')
 })
 
-app.get("/ShowAllFacts", async (req, res) => {
+app.get('/ShowAllFacts', async (req, res) => {
     try {
         const numberFacts = await numberFactSchema.find()
-        res.json(numberFacts)
+        res.send(numberFacts)
     }
     catch (err) {
-        res.status(500).json({ message: err.message })
+        res.status(500).send({ message: err.message })
     }
 })
 
-app.get("/GetFactById/:id", getNumberFact, async (req, res) => {
-    res.json(res.numberFact)
+app.get('/GetFactById/:id', getNumberFact, async (req, res) => {
+    res.send(res.numberFact)
 })
 
-app.post("/AddFact", async (req, res) => {    
+app.post('/AddFact', async (req, res) => {    
     const body = req.body
 
     const numberFactPost = new numberFactSchema({
@@ -61,25 +61,17 @@ app.post("/AddFact", async (req, res) => {
 
     try {
         const newNumberFact = await numberFactPost.save()
-        res.status(201).json(newNumberFact)
+        res.status(201).send(newNumberFact)
     }
     catch (err) {
-        res.status(400).json({ message: err.message })
+        res.status(400).send({ message: err.message })
     }
 })
 
-function isJsonKeysCorrect(json) {
-    if (!("number" in json)) return false
-
-    if (!("factMessage" in json)) return false
-
-    return true
-}
-
-app.post( "/AddRandomFact",  (req, res) => {
+app.post( '/AddRandomFact',  (req, res) => {
     let newNumberFact
 
-    http.get("http://numbersapi.com/random/math",  (response) => {
+    http.get('http://numbersapi.com/random/math',  (response) => {
         response.on('data', async (dataMessage) => {
 
             const subStringNumber = getSubStringNumber(dataMessage)
@@ -92,17 +84,17 @@ app.post( "/AddRandomFact",  (req, res) => {
             try {
                 newNumberFact = await numberFactPost.save()
             }
-            catch (err) {
-                res.status(400).json({ message: err.message})
+            catch (error) {
+                res.status(400).send({ message: error.message})
             }
 
         })
-    }).on('error', (err) => {
-        console.log(err.message)
+    }).on('error', (error) => {
+        console.log(error.message)
         res.status(400).send()
     })
 
-    res.json({ message: 'Added ranom instance of numberFact' })
+    res.send({ message: 'Added ranom instance of numberFact' })
 })
 
 
@@ -128,12 +120,8 @@ function isDigit(char) {
     return true
 }
 
-app.put("/UpdateFact/:id", getNumberFact, async (req, res) => {
+app.put('/UpdateFact/:id', getNumberFact, async (req, res) => {
     const body = req.body
-
-    if (!isJsonKeysCorrect(body)) {
-        res.status(400).json({ message: 'Invalid onject' })
-    }
 
     res.numberFact.id = body.id
     res.numberFact.number = body.number
@@ -141,19 +129,19 @@ app.put("/UpdateFact/:id", getNumberFact, async (req, res) => {
 
     try {
         const updatedNumberFact = await res.numberFact.save()
-        res.json(updatedNumberFact)
+        res.send(updatedNumberFact)
     }
     catch (error) {
-        res.status(400).json({ message: error.message })
+        res.status(400).send({ message: error.message })
     }
 })
 
-app.delete("/DeleteFactById/:id", getNumberFact, async (req, res) => {
+app.delete('/DeleteFactById/:id', getNumberFact, async (req, res) => {
    try {
     await res.numberFact.remove()
-    res.json({ message: 'Removed numberFact' })
+    res.send({ message: 'Removed numberFact' })
    } catch (error) {
-    res.status(500).json({ message: error.message })
+    res.status(500).send({ message: error.message })
    }
    
 })
@@ -165,11 +153,11 @@ async function getNumberFact(req, res, next) {
         numberFact = await numberFactSchema.findById(req.params.id)
 
         if (numberFact == null) {
-            return res.status(404).json({ message: "Not found" })
+            return res.status(404).send({ message: 'Not found' })
         }
 
     } catch (error) {
-        res.status(500).json({ message: err.message })
+        res.status(500).send({ message: error.message })
     }
 
     res.numberFact = numberFact
@@ -177,5 +165,5 @@ async function getNumberFact(req, res, next) {
 }
 
 app.listen(PORT, () =>{
-    console.log("Listening on port " + PORT)
+    console.log(`Listening on PORT ${PORT}`)
 })

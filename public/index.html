@@ -60,13 +60,17 @@
             <br>
             {
             <br>            
-            "id": 0,
+            <span class="light-blue-text">"_id"</span>: <span class="pink-text">"63d674925a7b17b3ca73957c"</span>,
             <br>
-            "number": "5357",
+            <span class="light-blue-text">"number"</span>: <span class="pink-text">"7993"</span>,
             <br>
-            "factMessage": "5357 is the smallest number that can not be formed using the digit 1 at most 27 times, together with the symbols +, –, × and ÷."
+            <span class="light-blue-text">"factMessage"</span>: <span class="pink-text">"7993 is one less than twice its reverse."</span>,
             <br>
-            }
+            <span class="light-blue-text">"__v"</span>: <span class="get">0</span>
+            <br>
+            },
+            <br>
+            ...
             <br>
             ]
         </pre>
@@ -75,7 +79,7 @@
         <h3>Retrieves a object by the id</h3>
         <pre>
             <code>
-                <p><span class="get">GET</span> <a href="https://numberfact.azurewebsites.net/GetFactById/0">https://numberfact.azurewebsites.net/GetFactById/0</a></p>
+                <p><span class="get">GET</span> <a href="https://numberfact.azurewebsites.net/GetFactById/63d674925a7b17b3ca73957c">https://numberfact.azurewebsites.net/GetFactById/63d67...</a></p>
             </code>
             <button class="copy-btn" id="GetById-btn"><img class="copy-image" src="https://cdn-icons-png.flaticon.com/512/5993/5993921.png"></button>
         </pre>
@@ -87,7 +91,7 @@
             </code>
             <button class="copy-btn" id="AddFact-btn"><img class="copy-image" src="https://cdn-icons-png.flaticon.com/512/5993/5993921.png"></button>
         </pre>
-        <p class="justify-text">When sending a post request, be sure to specify the right id so data array stays organized.
+        <p class="justify-text">When sending a post request, be sure to specify the right id so data array stays organized. The id has to be 24 characters long.
             The API will notify if an id change was made.</p>
 
         <h3>Send a post request to the server to fetch a new instance</h3>
